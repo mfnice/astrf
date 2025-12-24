@@ -6,7 +6,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}   # 例如 fengmiao/my-nextjs
+  IMAGE_NAME: mfnice/astrf   # 例如 fengmiao/my-nextjs
 
 jobs:
   build:
