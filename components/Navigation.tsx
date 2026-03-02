@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 
 const navItems = [
   { name: '首页', path: '/' },
+  { name: '3D 展示', path: '/showcase' },
   { name: '博客', path: '/blog' },
 ];
 
