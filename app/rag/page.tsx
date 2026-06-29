@@ -31,8 +31,8 @@ export default function RAGPage() {
       } else {
         setIngestResult(`入库失败：${data.error}`);
       }
-    } catch (e: any) {
-      setIngestResult(`请求失败：${e.message}`);
+    } catch (e) {
+      setIngestResult(`请求失败：${e instanceof Error ? e.message : String(e)}`);
     }
     setIngesting(false);
   }
@@ -59,8 +59,8 @@ export default function RAGPage() {
         if (done) break;
         setAnswer((prev) => prev + decoder.decode(value));
       }
-    } catch (e: any) {
-      setAnswer(`请求失败：${e.message}`);
+    } catch (e) {
+      setAnswer(`请求失败：${e instanceof Error ? e.message : String(e)}`);
     }
     setAsking(false);
   }

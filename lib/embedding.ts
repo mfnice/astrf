@@ -1,12 +1,14 @@
 import OpenAI from "openai";
 
-const client = new OpenAI({
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY!,
-});
+function getClient() {
+  return new OpenAI({
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: process.env.OPENROUTER_API_KEY || "",
+  });
+}
 
 export async function getEmbedding(text: string): Promise<number[]> {
-  const res = await client.embeddings.create({
+  const res = await getClient().embeddings.create({
     model: "openai/text-embedding-3-small",
     input: text,
   });
@@ -14,7 +16,7 @@ export async function getEmbedding(text: string): Promise<number[]> {
 }
 
 export async function getEmbeddings(texts: string[]): Promise<number[][]> {
-  const res = await client.embeddings.create({
+  const res = await getClient().embeddings.create({
     model: "openai/text-embedding-3-small",
     input: texts,
   });

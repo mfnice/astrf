@@ -3,6 +3,13 @@ import { QdrantClient } from "@qdrant/js-client-rest";
 export const COLLECTION_NAME = "documents";
 const VECTOR_SIZE = 1536; // text-embedding-3-small 的输出维度
 
+/** 存入 Qdrant 的文档片段 payload 结构 */
+export interface DocumentPayload {
+  text: string;
+  source: string;
+  created_at: string;
+}
+
 export const qdrant = new QdrantClient({
   url: process.env.QDRANT_URL || "http://localhost:6333",
   apiKey: process.env.QDRANT_API_KEY,

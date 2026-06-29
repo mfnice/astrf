@@ -1,17 +1,19 @@
-import { qdrant, COLLECTION_NAME, ensureCollection } from "@/lib/qdrant";
+import { qdrant, COLLECTION_NAME, ensureCollection, type DocumentPayload } from "@/lib/qdrant";
 import { getEmbedding } from "@/lib/embedding";
 import OpenAI from "openai";
 
 export const runtime = "nodejs";
 
-const llm = new OpenAI({
-  baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY!,
-  defaultHeaders: {
-    "HTTP-Referer": process.env.OPENROUTER_SITE_URL || "http://localhost:3000",
-    "X-OpenRouter-Title": process.env.OPENROUTER_APP_NAME || "rag-demo",
-  },
-});
+function getLLM() {
+  return new OpenAI({
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: process.env.OPENROUTER_API_KEY || "",
+    defaultHeaders: {
+      "HTTP-Referer": process.env.OPENROUTER_SITE_URL || "http://localhost:3000",
+      "X-OpenRouter-Title": process.env.OPENROUTER_APP_NAME || "rag-demo",
+    },
+  });
+}
 
 export async function POST(req: Request) {
   try {
@@ -35,8 +37,8 @@ export async function POST(req: Request) {
     });
 
     // 4. 拼接上下文
-    const contexts = results
-      .map((r) => (r.payload as any)?.text || "")
+    const contexts = results.points
+      .map((r) => (r.payload as Partial<DocumentPayload> | null)?.text ?? "")
       .filter(Boolean);
 
     const contextText = contexts.length > 0
@@ -44,7 +46,7 @@ export async function POST(req: Request) {
       : "没有找到相关文档。";
 
     // 5. 发给 LLM，流式返回
-    const stream = await llm.chat.completions.create({
+    const stream = await getLLM().chat.completions.create({
       model: "anthropic/claude-3.5-sonnet",
       messages: [
         {
@@ -88,8 +90,9 @@ ${contextText}`,
         },
       }
     );
-  } catch (e: any) {
+  } catch (e) {
     console.error("RAG chat error:", e);
-    return new Response(e.message, { status: 500 });
+    const message = e instanceof Error ? e.message : "Internal Server Error";
+    return new Response(message, { status: 500 });
   }
 }

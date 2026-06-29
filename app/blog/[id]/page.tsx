@@ -1,5 +1,6 @@
 'use client';
 
+import { use } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
@@ -40,9 +41,10 @@ const blogContent: Record<number, { title: string; content: string[] }> = {
 export default function BlogPostPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const postId = Number(params.id);
+  const { id } = use(params);
+  const postId = Number(id);
   const post = blogContent[postId];
 
   if (!post) {

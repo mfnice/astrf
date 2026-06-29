@@ -51,8 +51,9 @@ export async function POST(req: Request) {
       chunks_count: chunks.length,
       message: `成功入库 ${chunks.length} 个文本块`,
     });
-  } catch (e: any) {
+  } catch (e) {
     console.error("Ingest error:", e);
-    return NextResponse.json({ error: e.message }, { status: 500 });
+    const message = e instanceof Error ? e.message : "Internal Server Error";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

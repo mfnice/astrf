@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function claudeDemo() {
+export default function ClaudeDemo() {
   const [input, setInput] = useState("");
   const [answer, setAnswer] = useState("");
   const [loading, setLoading] = useState(false);
@@ -13,28 +13,31 @@ export default function claudeDemo() {
     setLoading(true);
     setAnswer("");
 
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: input }),
-    });
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: input }),
+      });
 
-    if (!res.body) {
-      setAnswer("No response body");
+      if (!res.ok || !res.body) {
+        setAnswer(`请求失败：${res.status} ${res.statusText}`);
+        return;
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        setAnswer((prev) => prev + decoder.decode(value));
+      }
+    } catch (e) {
+      setAnswer(`请求失败：${e instanceof Error ? e.message : String(e)}`);
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const reader = res.body.getReader();
-    const decoder = new TextDecoder("utf-8");
-
-    while (true) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      setAnswer((prev) => prev + decoder.decode(value));
-    }
-
-    setLoading(false);
   }
 
   return (
