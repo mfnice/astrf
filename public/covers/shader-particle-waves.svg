@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="ui-monospace,monospace">
+  <defs>
+    <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0"/></filter>
+  </defs>
+  <rect width="1200" height="800" fill="#0a0a0b"/>
+  <!-- 点状正弦波：圆头虚线模拟粒子 -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M60 240 Q 210 140 360 240 T 660 240 T 960 240 T 1260 240" stroke="rgba(255,255,255,0.22)" stroke-width="5" stroke-dasharray="0 26"/>
+    <path d="M40 320 Q 190 210 340 320 T 640 320 T 940 320 T 1240 320" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-dasharray="0 30"/>
+    <path d="M20 410 Q 170 280 320 410 T 620 410 T 920 410 T 1220 410" stroke="#c8f051" stroke-width="7" stroke-dasharray="0 34"/>
+    <path d="M40 500 Q 190 390 340 500 T 640 500 T 940 500 T 1240 500" stroke="rgba(200,240,81,0.45)" stroke-width="6" stroke-dasharray="0 30"/>
+    <path d="M60 580 Q 210 490 360 580 T 660 580 T 960 580 T 1260 580" stroke="rgba(255,255,255,0.22)" stroke-width="5" stroke-dasharray="0 26"/>
+    <path d="M80 650 Q 230 580 380 650 T 680 650 T 980 650 T 1280 650" stroke="rgba(255,255,255,0.12)" stroke-width="4" stroke-dasharray="0 22"/>
+  </g>
+  <text x="80" y="120" font-size="20" letter-spacing="6" fill="rgba(255,255,255,0.4)">22,000 PARTICLES / GLSL</text>
+  <rect width="1200" height="800" filter="url(#g)"/>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "astrf-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
+      "name": "voice-wall",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/windy/voice-wall", "run", "dev", "--", "--port", "3457"],
+      "port": 3457
+    }
+  ]
+}

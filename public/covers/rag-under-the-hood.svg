@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="ui-monospace,monospace">
+  <defs>
+    <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0"/></filter>
+  </defs>
+  <rect width="1200" height="800" fill="#0a0a0b"/>
+  <!-- 向量空间散点 -->
+  <g fill="rgba(255,255,255,0.28)">
+    <circle cx="180" cy="190" r="5"/><circle cx="320" cy="620" r="4"/><circle cx="410" cy="150" r="4"/>
+    <circle cx="530" cy="680" r="5"/><circle cx="640" cy="120" r="4"/><circle cx="880" cy="640" r="5"/>
+    <circle cx="1010" cy="180" r="4"/><circle cx="1060" cy="520" r="4"/><circle cx="240" cy="430" r="4"/>
+    <circle cx="960" cy="360" r="5"/><circle cx="150" cy="560" r="4"/><circle cx="760" cy="700" r="4"/>
+  </g>
+  <!-- 查询点与召回连线 -->
+  <g stroke="rgba(200,240,81,0.5)" stroke-width="1.5">
+    <line x1="600" y1="400" x2="450" y2="300"/>
+    <line x1="600" y1="400" x2="740" y2="330"/>
+    <line x1="600" y1="400" x2="690" y2="500"/>
+    <line x1="600" y1="400" x2="480" y2="490"/>
+    <line x1="600" y1="400" x2="820" y2="430"/>
+  </g>
+  <g fill="#c8f051">
+    <circle cx="450" cy="300" r="8"/><circle cx="740" cy="330" r="8"/><circle cx="690" cy="500" r="8"/>
+    <circle cx="480" cy="490" r="8"/><circle cx="820" cy="430" r="8"/>
+  </g>
+  <circle cx="600" cy="400" r="16" fill="none" stroke="#c8f051" stroke-width="3"/>
+  <circle cx="600" cy="400" r="34" fill="none" stroke="rgba(200,240,81,0.3)" stroke-width="1.5" stroke-dasharray="4 8"/>
+  <text x="632" y="392" font-size="19" letter-spacing="3" fill="#c8f051">QUERY</text>
+  <text x="80" y="120" font-size="20" letter-spacing="6" fill="rgba(255,255,255,0.4)">RETRIEVAL / TOP-K = 5</text>
+  <rect width="1200" height="800" filter="url(#g)"/>
+</svg>

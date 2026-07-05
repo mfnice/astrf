@@ -9,12 +9,25 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bg: "var(--bg)",
+        surface: "var(--surface)",
+        "surface-2": "var(--surface-2)",
+        line: "var(--line)",
+        "line-strong": "var(--line-strong)",
+        fg: "var(--fg)",
+        muted: "var(--muted)",
+        accent: "var(--accent)",
+        "accent-dim": "var(--accent-dim)",
+      },
+      fontFamily: {
+        display: ["var(--font-grotesk)", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+        body: ["var(--font-inter)", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+      },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.22, 1, 0.36, 1)",
       },
     },
   },
   plugins: [],
 };
 export default config;
-

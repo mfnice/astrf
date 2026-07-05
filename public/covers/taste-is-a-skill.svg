@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="ui-monospace,monospace">
+  <defs>
+    <filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0"/></filter>
+  </defs>
+  <rect width="1200" height="800" fill="#0a0a0b"/>
+  <!-- 黄金比例矩形分割 -->
+  <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1.5">
+    <rect x="200" y="140" width="840" height="520"/>
+    <line x1="720" y1="140" x2="720" y2="660"/>
+    <line x1="720" y1="460" x2="1040" y2="460"/>
+    <line x1="920" y1="460" x2="920" y2="660"/>
+    <line x1="920" y1="540" x2="1040" y2="540"/>
+  </g>
+  <!-- 斐波那契螺线 -->
+  <path d="M 720 660 A 520 520 0 0 1 200 140 M 720 140 A 320 320 0 0 1 1040 460 M 1040 460 A 200 200 0 0 1 920 660 M 920 660 A 120 120 0 0 1 920 540"
+        fill="none" stroke="#c8f051" stroke-width="3" transform="translate(0,0)"/>
+  <circle cx="720" cy="460" r="6" fill="#c8f051"/>
+  <g fill="rgba(255,255,255,0.4)" font-size="20" letter-spacing="6">
+    <text x="200" y="110">TASTE / 审美是技能</text>
+    <text x="200" y="730">1 : 1.618</text>
+  </g>
+  <rect width="1200" height="800" filter="url(#g)"/>
+</svg>
